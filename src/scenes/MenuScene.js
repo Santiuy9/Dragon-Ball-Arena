@@ -3,14 +3,14 @@ class MenuScene extends Phaser.Scene {
         super('MenuScene');
         // Lista de nombres de personajes
         this.characterNames = [
-            'Personaje 1', 'Personaje 2', 'Personaje 3', 'Personaje 4',
-            'Personaje 5', 'Personaje 6', 'Personaje 7', 'Personaje 8',
-            'Personaje 9', 'Personaje 10', 'Personaje 11', 'Personaje 12',
-            'Personaje 13', 'Personaje 14', 'Personaje 15', 'Personaje 16',
-            'Personaje 17', 'Personaje 18', 'Personaje 19', 'Personaje 20',
-            'Personaje 21', 'Personaje 22', 'Personaje 23', 'Personaje 24',
-            'Personaje 25', 'Personaje 26', 'Personaje 27', 'Personaje 28',
-            'Personaje 29', 'Personaje 30', 'Personaje 31', 'Personaje 32'
+            'Goku Inicio', 'Gohan SSJ', 'Piccolo', 'Krilin',
+            'Yamcha', 'Ten-Shin Han', 'Trunks SSJ', 'Mr Roshi',
+            'Saibaiman', 'Raditz', 'Nappa', 'Vegeta',
+            'Personaje 13', 'Personaje 14', 'Dodoria', 'Zarbon',
+            'Guldo', 'Recoon', 'Jiz', 'Butter',
+            'Capitan Gyi Nyu', 'Goku SSJ2', 'Freezer Final', 'Freezer 100%',
+            'Androide 16', 'Androide 17', 'Androide 18', 'Androide 19',
+            'Androide 20', 'Cell 1° Forma', 'Cell 2° Forma', 'Cell 3° Forma'
             // Agrega más nombres aquí según sea necesario
         ];
         this.charactersPerPage = [24, 8]; // Número de personajes por página (primera página 24, segunda página 8)
@@ -18,10 +18,15 @@ class MenuScene extends Phaser.Scene {
 
         // Lista de habilidades por personaje (aquí usamos frames como ejemplo)
         this.characterSkills = {
-            0: [0, 1, 2], // Habilidades para Personaje 1
-            1: [3, 4, 5], // Habilidades para Personaje 2
-            2: [6, 7, 8], // Habilidades para Personaje 3
-            3: [9, 10, 11], // Habilidades para Personaje 4
+            0: [0, 1, 2, 3, 4, 5], // Habilidades para Personaje 1
+            1: [7, 8, 9, 10], // Habilidades para Personaje 2
+            2: [11, 12, 13, 14, 15], // Habilidades para Personaje 3
+            3: [16, 17, 18, 19], // Habilidades para Personaje 4
+            4: [20, 21, 22, 23],
+            5: [24, 25, 26, 27],
+            6: [28, 29, 30, 31, 32, 33],
+            11: [34, 35, 36, 37, 38, 39],
+            21: [40, 41, 42, 43, 44, 45, 46]
             // Añadir más personajes y habilidades aquí
         };
     }
@@ -65,23 +70,26 @@ class MenuScene extends Phaser.Scene {
 
         // Añadir contenido a cada pestaña
         this.tabs.newsTab.add(this.add.text(0, 0, 'Noticias del juego', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' }).setOrigin(0.5));
-        this.tabs.charactersTab.add(this.add.text(0, -150, 'Personajes', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' }).setOrigin(0.5));
+        //this.tabs.charactersTab.add(this.add.text(0, -150, 'Personajes', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' }).setOrigin(0.5));
         this.tabs.battleTab.add(this.add.text(0, 0, 'Batallas', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' }).setOrigin(0.5));
         this.tabs.missionsTab.add(this.add.text(0, 0, 'Misiones', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' }).setOrigin(0.5));
         this.tabs.socialTab.add(this.add.text(0, 0, 'Social', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' }).setOrigin(0.5));
 
         // Añadir recuadro y texto en la pestaña "Characters"
-        const charactersRect = this.add.rectangle(0, 50, 800, 400, 0xffffff, 0.8).setOrigin(0.5);
+        const charactersRect = this.add.rectangle(200, 150, 800, 300, 0xffffff, 0.8).setOrigin(0.5);
         this.tabs.charactersTab.add(charactersRect);
 
+        const charactersRectDetail = this.add.rectangle(200, -150, 800, 275, 0xffffff, 0.8).setOrigin(0.5);
+        this.tabs.charactersTab.add(charactersRectDetail);
+
         // Flechas de navegación
-        const leftArrow = this.add.text(-350, 200, '<', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' })
+        const leftArrow = this.add.text(-225, 150, '<', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' })
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => this.changePage(-1));
         leftArrow.setOrigin(0.5);
         this.tabs.charactersTab.add(leftArrow);
 
-        const rightArrow = this.add.text(350, 200, '>', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' })
+        const rightArrow = this.add.text(625, 150, '>', { fontFamily: 'Arial', fontSize: '32px', fill: '#fff' })
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => this.changePage(1));
         rightArrow.setOrigin(0.5);
@@ -123,12 +131,12 @@ class MenuScene extends Phaser.Scene {
 
         // Mostrar personajes de la página actual
         const start = page === 0 ? 0 : 24;
-        const end = page === 0 ? 24 : 32;
+        const end = page === 0 ? 24 : 34;
         const charactersToShow = this.characterNames.slice(start, end);
 
         charactersToShow.forEach((name, index) => {
-            const xPos = (index % 8) * 100 - 350; // Ajustar para que los personajes se alineen en filas
-            const yPos = Math.floor(index / 8) * 100 - 150; // Ajustar para que los personajes se alineen en columnas
+            const xPos = (index % 8) * 100 - 150; // Ajustar para que los personajes se alineen en filas
+            const yPos = Math.floor(index / 8) * 100 + 50; // Ajustar para que los personajes se alineen en columnas
 
             const frame = start + index; // Calcular el frame del personaje
 
@@ -163,13 +171,13 @@ class MenuScene extends Phaser.Scene {
 
         // Mostrar los detalles del personaje
         this.characterDetails.removeAll(true);
-        const detailsText = this.add.text(0, -50, `Detalles del personaje: ${characterName}`, { fontFamily: 'Arial', fontSize: '24px', fill: '#000' }).setOrigin(0.5);
+        const detailsText = this.add.text(200, -475, `${characterName}`, { fontFamily: 'Arial', fontSize: '24px', fill: '#000' }).setOrigin(0.5);
         this.characterDetails.add(detailsText);
 
         // Mostrar las habilidades del personaje
         const skills = this.characterSkills[characterFrame] || [];
         skills.forEach((skillFrame, index) => {
-            const skillImage = this.add.sprite((index % 4) * 50 - 75, 50 + Math.floor(index / 4) * 50, 'Skills', skillFrame).setScale(0.5);
+            const skillImage = this.add.sprite((index % 8) * 80, -275 + Math.floor(index / 8) * 50, 'Skills', skillFrame).setScale(0.75);
             this.characterDetails.add(skillImage);
         });
 
