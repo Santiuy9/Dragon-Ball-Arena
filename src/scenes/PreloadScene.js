@@ -10,6 +10,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('torre', 'assets/vanilla/torre_karin.png');
         this.load.spritesheet('Characters', 'assets/Characters_tileset_prueba.png', { frameWidth: 100, frameHeight: 100 });
         this.load.spritesheet('Skills', 'assets/Skills_tileset.png', { frameWidth: 100, frameHeight: 100 });
+        this.load.json('skills', 'src/data/skills.json')
 
     }
 
