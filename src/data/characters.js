@@ -4,32 +4,26 @@ export default class Character {
         this.frame = frame;
         this.skills = skills;
         this.description = description;
-        this.selected = false;
-    }
-
-    //
-    getName() {
-        return this.name;
+        this.battleSprite = null; // Propiedad para el sprite de batalla
+        this.hp = 100; // Propiedad de ejemplo para la salud
+        this.maxHp = 100; // Propiedad de ejemplo para la salud máxima
     }
 
     getFrame() {
         return this.frame;
     }
 
-    getSkills() {
-        return this.skills;
+    setBattleSprite(sprite) {
+        this.battleSprite = sprite;
     }
 
-    getDescription() {
-        return this.description
+    getBattleSprite() {
+        return this.battleSprite;
     }
 
-    setSelected() {
-        this.selected = this.selected;
+    setBattleSpriteVisible(visible) {
+        if (this.battleSprite) {
+            this.battleSprite.setVisible(visible);
+        }
     }
-
-    isSelected() {
-        return this.selected;
-    }
-
 }

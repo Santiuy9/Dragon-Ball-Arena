@@ -45,5 +45,13 @@
     "43": { "name": "Rafaga de Ki", "description": "Goku SSJ lanza una rafaga de ki. Por dos turnos hace 20 de daño a un rival", "type": "Distancia", "cost": 30, "cooldown": 1},
     "44": { "name": "Kamehameha Instantaneo", "description": "Goku SSJ sorprende a su rival con su Kamehameha instantaneo. Genera 55 puntos de daño. No puede ser reflejada, bloqueada, ni contraatacada e ignora invulnerabilidad", "type": "Distancia", "cost": 50, "cooldown": 0},
     "45": { "name": "Goku Evasion", "description": "Goku SSJ se vuelve invulnerable por 1 turno", "type": "Distancia", "cost": 35, "cooldown": 4 },
-    "46": { "name": "Teletransporte", "description": "Si Goku SSJ no realiza ninguna accion activa esta habilidad. Goku SSJ contraataca la primera habilidad que le hagan. Esta habilidad es invisible", "type": "Pasiva", "cost": 0, "cooldown": 0}
+    "46": { "name": "Teletransporte", "description": "Si Goku SSJ no realiza ninguna accion activa esta habilidad. Goku SSJ contraataca la primera habilidad que le hagan. Esta habilidad es invisible", "type": "Pasiva", "cost": 0, "cooldown": 0},
+    "47": { "name": "Rayo Mortal", "description": "Freezer lanza laser desde sus dedos. Genera 35 puntos de daño", "type": "Distancia", "cost": 30, "cooldown": 1},
+    "48": { "name": "Blaster Castigador", "description": "Freezer lanza una onda de poder desde su mano. Genera 30 puntos de daño.", "type": "Distancia", "cost": 25, "cooldown": 1},
+    "49": { "name": "Bola Mortal", "description": "Freezer crea una bola muy destructiva. Genera 65 puntos de daño.", "type": "Distancia", "cost": 50, "cooldown": 4},
+    "50": { "name": "Freezer Evasion", "description": "Freezer se vuelve invulnerable por 1 turno.", "type": "Físico", "cost": 35, "cooldown": 4 },
+    "51": { "name": "Kamehameha Solar", "description": "Cell lanza su version de Kamehameha. Genera 45 puntos de daño", "type": "Distancia", "cost": 35, "cooldown": 2},
+    "52": { "name": "Cells Jrs", "description": "Cell invoca a sus Cells Jrs para defenderlo. Obtiene 40 puntos de defensa.", "type": "Especial", "cost": 30, "cooldown": 3},
+    "53": { "name": "Regeneracion", "description": "Cell regenera las partes de su cuerpo lastimadas. Recupera 35 HP.", "type": "Especial", "cost": 25, "cooldown": 2},
+    "54": { "name": "Cell Bloqueo", "description": "Cell se vuelve invulnerable por 1 turno.", "type": "Físico", "cost": 35, "cooldown": 4 }
 }

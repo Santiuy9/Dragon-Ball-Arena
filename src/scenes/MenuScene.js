@@ -17,7 +17,7 @@ class MenuScene extends Phaser.Scene {
             new Character('Saibaiman', 8, [], ''),
             new Character('Raditz', 9, [], ''),
             new Character('Nappa', 10, [], ''),
-            new Character('Vegeta', 11, [], 'Vegeta'),
+            new Character('Vegeta', 11, [34, 35, 36, 37, 38, 39], 'Vegeta'),
             new Character('', 12, [], ''),
             new Character('Kewi', 13, [], ''),
             new Character('Dodoria', 14, [], ''),
@@ -27,8 +27,8 @@ class MenuScene extends Phaser.Scene {
             new Character('Jeice', 18, [], ''),
             new Character('Butta', 19, [], ''),
             new Character('Ginyu', 20, [], ''),
-            new Character('Goku SSJ', 21, [], 'Goku SSJ'),
-            new Character('Freezer Forma Final', 22, [], ''),
+            new Character('Goku SSJ', 21, [40, 41, 42, 43, 44, 45, 46], 'Goku SSJ'),
+            new Character('Freezer Forma Final', 22, [47, 48, 49, 50], ''),
             new Character('Freezer 100%', 23, [], ''),
             new Character('Androide 16', 24, [], ''),
             new Character('Androide 17', 25, [], ''),
@@ -37,10 +37,7 @@ class MenuScene extends Phaser.Scene {
             new Character('Androide 20', 28, [], ''),
             new Character('Cell 1° Forma', 29, [], ''),
             new Character('Cell 2° Forma', 30, [], ''),
-            new Character('Cell 3° Forma', 31, [], ''),
-            
-
-            // Agrega más personajes según sea necesario
+            new Character('Cell 3° Forma', 31, [51, 52, 53, 54], 'Cell 3° Forma'),
         ];
 
         this.charactersPerPage = [24, 8];
@@ -114,6 +111,13 @@ class MenuScene extends Phaser.Scene {
         this.tabs.charactersTab.add(this.selectedCharactersContainer);
 
         this.showTab('newsTab');
+
+        // Crear el botón "Start Battle" y ocultarlo inicialmente
+        this.startBattleButton = this.add.text(500, 300, 'Start Battle', { fontFamily: 'Arial', fontSize: '32px', fill: '#000' })
+            .setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => this.startBattle());
+        this.startBattleButton.setOrigin(0.5);
+        this.startBattleButton.setVisible(false);
     }
 
     showTab(key) {
@@ -214,6 +218,10 @@ class MenuScene extends Phaser.Scene {
         this.selectedCharacters.push(character);
         this.updateSelectedCharactersDisplay();
         console.log(`Personaje seleccionado: ${character.name}`);
+
+        if (this.selectedCharacters.length === 3) {
+            this.startBattleButton.setVisible(true);
+        }
     }
 
     deselectCharacter(character) {
@@ -222,6 +230,10 @@ class MenuScene extends Phaser.Scene {
             this.selectedCharacters.splice(index, 1);
             this.updateSelectedCharactersDisplay();
             console.log(`Personaje deseleccionado: ${character.name}`);
+
+            if (this.selectedCharacters.length < 3) {
+                this.startBattleButton.setVisible(false);
+            }
         }
     }
 
@@ -236,6 +248,28 @@ class MenuScene extends Phaser.Scene {
             image.on('pointerdown', () => this.deselectCharacter(character));
             this.selectedCharactersContainer.add(image);
         });
+    }
+
+    startBattle() {
+        if (this.selectedCharacters.length === 3) {
+            const enemyCharacters = this.generateEnemyCharacters();
+            this.scene.start('BattleScene', {
+                selectedCharacters: this.selectedCharacters,
+                enemyCharacters: enemyCharacters
+            });
+        } else {
+            console.log('Debe seleccionar 3 personajes para iniciar la batalla.');
+        }
+    }
+
+    generateEnemyCharacters() {
+        // Generar personajes enemigos de forma aleatoria o predefinida
+        // Por simplicidad, seleccionamos algunos personajes al azar
+        return [
+            new Character('Vegeta', 11, [34, 35, 36, 37, 38, 39], 'Vegeta'),
+            new Character('Freezer Forma Final', 22, [47, 48, 49, 50], 'Freezer Forma Final'),
+            new Character('Cell 3° Forma', 31, [51, 52, 53, 54], 'Cell 3° Forma')
+        ];
     }
 
     update() {
